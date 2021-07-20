@@ -30,21 +30,21 @@ app.get("/", (req, res) => {
     });
   
     if (index === -1 && name !== "") {
-      heroList.push(name);
-      // add rollbar log here
+        heroList.push(name);
+        rollbar.log(`${name} added to hero list`)
   
-      res.status(200).send(heroList);
+        res.status(200).send(heroList);
     } else if (name === "") {
-      // add a rollbar error here
+        rollbar.error("no hero name was provided")
   
-      res.status(400).send({ error: "no hero was provided" });
+        res.status(400).send({ error: "no hero name was provided" });
     } else {
-      // add a rollbar error here too
+        rollbar.error(`${name} already exists`)
   
-      res.status(400).send({ error: "that hero already exists" });
+        res.status(400).send({ error: `${name} already exists` });
     }
   });
 
-  const port = process.env.PORT || 4545;
+  const port = process.env.PORT || 5500;
   
   app.listen(port, () => console.log(`server running on port ${port}`));

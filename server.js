@@ -15,7 +15,7 @@ app.use(rollbar.errorHandler());
 
 let heroList = [];
 
-rollbar.info("Hello World!");
+rollbar.log("Hello World!");
 
 app.get("/", (req, res) => {
     res.sendFile(path.join(__dirname, "./index.html"));

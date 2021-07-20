@@ -11,17 +11,19 @@ const rollbar = new Rollbar({
 
 const app = express();
 app.use(express.json());
+app.use(rollbar.errorHandler());
 
 let heroList = [];
+heroList.push("Spider Man");
 
 rollbar.info("Hello World!");
 
 app.get("/", (req, res) => {
-    res.sendFile(path.join(__dirname, "/public/index.html"));
+    res.sendFile(path.join(__dirname, "./index.html"));
     rollbar.info('html file served successfully');
   });
 
-  app.post("/api/hero", (req, res) => {
+  app.post(`/api/hero`, (req, res) => {
     let { name } = req.body;
     name = name.trim();
   

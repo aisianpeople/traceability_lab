@@ -30,7 +30,7 @@ app.get("/", (req, res) => {
       return heroName === name;
     });
   
-    if (index === -1 && name !== "") {
+    if (index === -1 && name !== "" && name !== "All for One") {
         heroList.push(name);
         rollbar.log(`${name} added to hero list`)
   

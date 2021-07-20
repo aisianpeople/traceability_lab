@@ -14,7 +14,6 @@ app.use(express.json());
 app.use(rollbar.errorHandler());
 
 let heroList = [];
-heroList.push("Spider Man");
 
 rollbar.info("Hello World!");
 

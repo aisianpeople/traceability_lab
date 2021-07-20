@@ -12,7 +12,7 @@
       <input type="submit" />
     </form>
 
-    <h1>Student List</h1>
+    <h1>Hero List</h1>
     <section></section>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
     <script>
@@ -23,12 +23,12 @@
       function submitHandler(e) {
         e.preventDefault();
         axios
-          .post("/api/student", { name: nameInput.value })
+          .post("/api/hero", { name: nameInput.value })
           .then((res) => {
             container.innerHTML = "";
 
-            res.data.forEach((studentName) => {
-              container.innerHTML += `<p>${studentName}</p>`;
+            res.data.forEach((heroName) => {
+              container.innerHTML += `<p>${heroName}</p>`;
             });
           })
           .catch((err) => console.log(err));

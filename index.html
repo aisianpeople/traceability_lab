@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Student List</title>
+  </head>
+  <body>
+    <form>
+      <input type="text" placeholder="type name here..." />
+      <input type="submit" />
+    </form>
+
+    <h1>Student List</h1>
+    <section></section>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
+    <script>
+      const addForm = document.querySelector("form");
+      const nameInput = document.querySelector("input");
+      const container = document.querySelector("section");
+
+      function submitHandler(e) {
+        e.preventDefault();
+        axios
+          .post("/api/student", { name: nameInput.value })
+          .then((res) => {
+            container.innerHTML = "";
+
+            res.data.forEach((studentName) => {
+              container.innerHTML += `<p>${studentName}</p>`;
+            });
+          })
+          .catch((err) => console.log(err));
+      }
+
+      addForm.addEventListener("submit", submitHandler);
+    </script>
+  </body>
+</html>

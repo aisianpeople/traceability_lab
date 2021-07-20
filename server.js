@@ -15,7 +15,7 @@ app.use(rollbar.errorHandler());
 
 let heroList = [];
 
-rollbar.log("Hello World!");
+rollbar.info("Hello World!");
 
 app.get("/", (req, res) => {
     res.sendFile(path.join(__dirname, "./index.html"));
@@ -39,8 +39,12 @@ app.get("/", (req, res) => {
         rollbar.error("no hero name was provided")
   
         res.status(400).send({ error: "no hero name was provided" });
+    } else if (name === "All for One") {
+        rollbar.critical("All for One is a villian")
+  
+        res.status(400).send({ error: "All for One is a villian" });
     } else {
-        rollbar.error(`${name} already exists`)
+        rollbar.warning(`${name} already exists`)
   
         res.status(400).send({ error: `${name} already exists` });
     }
